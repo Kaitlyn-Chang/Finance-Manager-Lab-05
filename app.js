@@ -45,7 +45,7 @@ app.get( "/index", ( req, res ) => {
 // define a route for the item detail page
 const read_item_sql = `
     SELECT 
-        item, quantity, cost, description 
+        id, item, quantity, cost, description 
     FROM
         purchase
     WHERE
@@ -93,7 +93,7 @@ const create_item_sql = `
         (?, ?, ?, ?)
 `
 app.post("/index", ( req, res ) => {
-    db.execute(create_item_sql, [req.body.name, req.body.quantity], (error, results) => {
+    db.execute(create_item_sql, [req.body.item, req.body.quantity, req.body.cost, req.body.description], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
@@ -110,12 +110,13 @@ const update_item_sql = `
     SET
         item = ?,
         quantity = ?,
+        cost = ?,
         description = ?
     WHERE
         id = ?
 `
 app.post("/index/item/:id", ( req, res ) => {
-    db.execute(update_item_sql, [req.body.name, req.body.quantity, req.body.description, req.params.id], (error, results) => {
+    db.execute(update_item_sql, [req.body.name, req.body.quantity, req.body.cost, req.body.description, req.params.id], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
