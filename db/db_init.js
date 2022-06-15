@@ -28,9 +28,9 @@ db.execute(create_purchase_table_sql);
 
 const insert_purchase_table_sql = `
     INSERT INTO purchase 
-        (item, quantity, cost) 
+        (item, quantity, cost, description) 
     VALUES 
-        (?, ?, ?);
+        (?, ?, ?, ?);
 `
 
 db.execute(insert_purchase_table_sql, ['Banana', '5', '5.40', 'Grocery shopping']);
