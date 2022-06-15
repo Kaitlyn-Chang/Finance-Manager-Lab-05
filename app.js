@@ -98,7 +98,8 @@ app.post("/index", ( req, res ) => {
             res.status(500).send(error); //Internal Server Error
         else {
             //results.insertId has the primary key (id) of the newly inserted element.
-            res.redirect(`/index/item/${results.insertId}`);
+            //res.redirect(`/index/item/${results.insertId}`);
+            res.redirect("/index");
         }
     });
 })
