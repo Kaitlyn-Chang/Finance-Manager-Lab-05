@@ -3,7 +3,7 @@ const db = require('./db/db_connection');
 const express = require( "express" );
 const logger = require("morgan");
 const app = express();
-const port = 8080;
+const port = process.env.PORT;
 
 // Configure Express to use EJS
 app.set( "views",  __dirname + "/views");
